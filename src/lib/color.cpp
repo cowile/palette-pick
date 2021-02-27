@@ -53,7 +53,7 @@ bool Color::lessThanHsl(const Color &left, const Color &right) {
     Magick::ColorHSL right_hsl(right.color_);
     if (left_hsl.hue() == right_hsl.hue()) {
         if (left_hsl.saturation() == right_hsl.saturation()) {
-            return (left_hsl.lightness() < right_hsl.lightness());
+            return (left_hsl.luminosity() < right_hsl.luminosity());
         }
         return (left_hsl.saturation() < right_hsl.saturation());
     }
@@ -68,9 +68,9 @@ std::string Color::to_string() const {
     std::ostringstream hex_stringstream;
     hex_stringstream << std::setfill('0') << std::hex << std::uppercase;
     hex_stringstream << "#"
-        << std::setw(2) << (static_cast<int>(color_.quantumRed()) >> 8)
-        << std::setw(2) << (static_cast<int>(color_.quantumGreen()) >> 8)
-        << std::setw(2) << (static_cast<int>(color_.quantumBlue()) >> 8);
+        << std::setw(2) << (static_cast<int>(color_.redQuantum()) >> 8)
+        << std::setw(2) << (static_cast<int>(color_.greenQuantum()) >> 8)
+        << std::setw(2) << (static_cast<int>(color_.blueQuantum()) >> 8);
     return hex_stringstream.str();
 }
 }  // namespace palette

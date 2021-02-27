@@ -224,7 +224,7 @@ class MkWheel : public Tool {
             Magick::ColorHSL color_hsl(color_.value());
             input_hue = color_hsl.hue();
             input_saturation = color_hsl.saturation();
-            input_lightness = color_hsl.lightness();
+            input_lightness = color_hsl.luminosity();
         } catch (Magick::Exception &error) {
             std::cerr << "Warning: color option \"" << color_.value()
                 << "\" could not be interpreted as a color; ignoring"

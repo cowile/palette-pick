@@ -25,9 +25,9 @@ bool ColorKMeans::find_clusters(size_t num_clusters,
     for (size_t c = 0; c < num_clusters; ++c) {
         if (c < color_centroids.size()) {
             const Color &color = color_centroids.at(c);
-            means(0, c) = static_cast<int>(color.get().quantumRed());
-            means(1, c) = static_cast<int>(color.get().quantumGreen());
-            means(2, c) = static_cast<int>(color.get().quantumBlue());
+            means(0, c) = static_cast<int>(color.get().redQuantum());
+            means(1, c) = static_cast<int>(color.get().greenQuantum());
+            means(2, c) = static_cast<int>(color.get().blueQuantum());
         } else {
             means(0, c) = 0;
             means(1, c) = 0;
@@ -38,9 +38,9 @@ bool ColorKMeans::find_clusters(size_t num_clusters,
     arma::mat data = arma::eye(3, colors.size());
     for (size_t c = 0; c < colors.size(); ++c) {
         const Color &color = colors.at(c);
-        data(0, c) = static_cast<int>(color.get().quantumRed());
-        data(1, c) = static_cast<int>(color.get().quantumGreen());
-        data(2, c) = static_cast<int>(color.get().quantumBlue());
+        data(0, c) = static_cast<int>(color.get().redQuantum());
+        data(1, c) = static_cast<int>(color.get().greenQuantum());
+        data(2, c) = static_cast<int>(color.get().blueQuantum());
     }
 
     bool k_means_success = false;

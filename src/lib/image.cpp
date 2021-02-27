@@ -157,8 +157,8 @@ HslRangeProperties::HslRangeProperties(const std::vector<Color> &colors) :
         Magick::ColorHSL color_hsl(color.get());
         min_saturation_ = std::min(min_saturation_, color_hsl.saturation());
         max_saturation_ = std::max(max_saturation_, color_hsl.saturation());
-        min_lightness_ = std::min(min_lightness_, color_hsl.lightness());
-        max_lightness_ = std::max(max_lightness_, color_hsl.lightness());
+        min_lightness_ = std::min(min_lightness_, color_hsl.luminosity());
+        max_lightness_ = std::max(max_lightness_, color_hsl.luminosity());
     }
 }
 
@@ -168,8 +168,8 @@ std::vector<Color> get_filtered_colors(const std::vector<Color> &colors,
         Magick::ColorHSL c_hsl(c.get());
         return ((c_hsl.saturation() >= properties.min_saturation_)
                 && (c_hsl.saturation() <= properties.max_saturation_)
-                && (c_hsl.lightness() >= properties.min_lightness_)
-                && (c_hsl.lightness() <= properties.max_lightness_));
+                && (c_hsl.luminosity() >= properties.min_lightness_)
+                && (c_hsl.luminosity() <= properties.max_lightness_));
     };
     std::vector<Color> filtered_colors;
     std::copy_if(colors.begin(), colors.end(),
